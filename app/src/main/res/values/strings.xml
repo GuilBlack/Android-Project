@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Final Project</string>
+    <string name="arrow_to_go_to_photos_description">Arrow that will allow the user to see the different photos taken for this station</string>
+</resources>
