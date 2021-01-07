@@ -21,9 +21,7 @@ class NearStationDictionary(val app: Application) {
     val nearStationData = MutableLiveData<JsonData>()
 
     init {
-        CoroutineScope(Dispatchers.IO).launch {
-            callWebService()
-        }
+        refreshData()
         Log.i(LOG_TAG, "network available: ${networkAvailable()}")
     }
 
@@ -32,6 +30,7 @@ class NearStationDictionary(val app: Application) {
     @WorkerThread
     suspend fun callWebService() {
         if (networkAvailable()) {
+            Log.i(LOG_TAG, "Calling web service :)")
             val retrofit = Retrofit.Builder()
                 .baseUrl(WEB_SERVICE_URL)
                 .addConverterFactory(MoshiConverterFactory.create())
@@ -71,5 +70,11 @@ class NearStationDictionary(val app: Application) {
             }
         }
         return result
+    }
+
+    fun refreshData() {
+        CoroutineScope(Dispatchers.IO).launch {
+            callWebService()
+        }
     }
 }

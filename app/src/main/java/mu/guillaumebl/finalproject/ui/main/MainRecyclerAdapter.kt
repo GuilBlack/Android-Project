@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.station_grid_item.view.*
 import mu.guillaumebl.finalproject.R
 import mu.guillaumebl.finalproject.data.Station
 

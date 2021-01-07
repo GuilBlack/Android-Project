@@ -9,8 +9,7 @@
     android:focusable="true"
     android:focusableInTouchMode="true"
     android:background="?android:attr/selectableItemBackground"
-    android:foreground="?android:attr/selectableItemBackground"
-    tools:ignore="UnusedAttribute">
+    android:foreground="?android:attr/selectableItemBackground">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
