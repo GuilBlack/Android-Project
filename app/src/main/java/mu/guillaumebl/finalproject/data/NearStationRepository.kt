@@ -16,7 +16,7 @@ import mu.guillaumebl.finalproject.WEB_SERVICE_URL
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-class NearStationDictionary(val app: Application) {
+class NearStationRepository(val app: Application) {
 
     val nearStationData = MutableLiveData<JsonData>()
 
