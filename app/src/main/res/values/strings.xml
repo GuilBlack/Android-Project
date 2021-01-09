@@ -2,4 +2,7 @@
     <string name="app_name">Final Project</string>
     <string name="arrow_to_go_to_photos_description">Arrow that will allow the user to see the different photos taken for this station</string>
     <string name="google_maps">Google Maps</string>
+    <string name="grid_view">Grid View</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

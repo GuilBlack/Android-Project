@@ -7,10 +7,10 @@
     android:layout_height="wrap_content"
     android:clickable="true"
     android:focusable="true"
-    android:focusableInTouchMode="true"
     android:background="?android:attr/selectableItemBackground"
     android:foreground="?android:attr/selectableItemBackground"
     tools:ignore="UnusedAttribute">
+    <!--    attribute in constraint layout android:focusableInTouchMode="true"-->
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"

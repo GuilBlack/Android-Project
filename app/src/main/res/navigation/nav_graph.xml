@@ -9,5 +9,19 @@
             android:id="@+id/mainFragment"
             android:name="mu.guillaumebl.finalproject.ui.main.MainListFragment"
             android:label="main_fragment"
-            tools:layout="@layout/main_fragment"/>
+            tools:layout="@layout/main_fragment">
+        <action
+            android:id="@+id/action_mainFragment_to_mainGoogleMapsFragment"
+            app:destination="@id/mainGoogleMapsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/mainGoogleMapsFragment"
+        android:name="mu.guillaumebl.finalproject.ui.main.MainGoogleMapsFragment"
+        android:label="main_google_maps_fragment"
+        tools:layout="@layout/google_map_main_fragment">
+        <action
+            android:id="@+id/action_mainGoogleMapsFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
 </navigation>

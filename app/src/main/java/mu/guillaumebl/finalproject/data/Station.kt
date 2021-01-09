@@ -1,5 +1,9 @@
 package mu.guillaumebl.finalproject.data
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class Station (
     val id: String,
     val street_name: String,
@@ -11,4 +15,4 @@ data class Station (
     val furniture: String,
     val buses: String,
     val distance: String
-    )
+    ): Parcelable

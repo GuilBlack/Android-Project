@@ -5,11 +5,11 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.MainListFragment">
+    tools:context=".ui.main.MainGoogleMapsFragment">
 
 
     <Button
-        android:id="@+id/googleMapsButton"
+        android:id="@+id/buttonToGoogleMaps"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="5dp"

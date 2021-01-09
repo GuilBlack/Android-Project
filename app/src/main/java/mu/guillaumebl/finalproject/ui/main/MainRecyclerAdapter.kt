@@ -10,7 +10,8 @@ import mu.guillaumebl.finalproject.R
 import mu.guillaumebl.finalproject.data.Station
 
 class MainRecyclerAdapter(val context: Context,
-                          val stations: List<Station>): RecyclerView.Adapter<MainRecyclerAdapter.ViewHolder>()
+                          val stations: List<Station>,
+                          val itemListener: StationItemListener): RecyclerView.Adapter<MainRecyclerAdapter.ViewHolder>()
 {
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
@@ -31,7 +32,14 @@ class MainRecyclerAdapter(val context: Context,
                 it.contentDescription = station.street_name
             }
         }
+        holder.itemView.setOnClickListener {
+            itemListener.onStationItemClick(station)
+        }
     }
 
     override fun getItemCount() = stations.size
+
+    interface StationItemListener {
+        fun onStationItemClick(station: Station)
+    }
 }
