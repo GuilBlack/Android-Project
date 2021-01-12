@@ -22,6 +22,7 @@ class PhotoListActivity : AppCompatActivity() {
         Log.i(LOG_TAG, station.toString())
 
         setContentView(R.layout.activity_photo_list)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     private fun replaceFragment(frag: Fragment) {

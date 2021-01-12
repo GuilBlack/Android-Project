@@ -5,4 +5,13 @@
     <string name="grid_view">Grid View</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="button_to_activate_the_camera">floating action button to activate the camera</string>
+    <string name="name_of_the_picture">name of the picture</string>
+    <string name="title_picture">Title picture</string>
+    <string name="save">Save</string>
+    <string name="picture_preview">picture preview</string>
+    <string name="no_title">You must input a title</string>
+    <string name="no_alphenumeric">You must have some alphanumeric characters</string>
+    <string name="no_special_chars_allowed">No special characters allowed except for -</string>
+    <string name="title_max_length">Your title must be less than 20 characters</string>
 </resources>
