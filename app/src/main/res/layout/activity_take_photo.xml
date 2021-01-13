@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".ui.photolist.TakePhotoActivity">
+    tools:context=".TakePhotoActivity">
 
     <ImageView
         android:id="@+id/imageThumbnail"

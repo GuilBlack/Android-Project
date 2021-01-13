@@ -35,7 +35,7 @@
         </provider>
 
         <activity
-            android:name=".ui.photolist.TakePhotoActivity"
+            android:name=".TakePhotoActivity"
             android:parentActivityName=".PhotoListActivity" />
         <activity
             android:name=".PhotoListActivity"
