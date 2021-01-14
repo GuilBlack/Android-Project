@@ -10,7 +10,7 @@ import mu.guillaumebl.finalproject.data.StationPhotoRepository
 
 class PhotoViewModel(app: Application, stationId: String): AndroidViewModel(app) {
 
-    private val readAllData: LiveData<List<StationPhoto>>
+    val readAllData: LiveData<List<StationPhoto>>
     private val repository: StationPhotoRepository
 
     init {
@@ -28,6 +28,12 @@ class PhotoViewModel(app: Application, stationId: String): AndroidViewModel(app)
     fun deleteAll() {
         viewModelScope.launch(Dispatchers.IO) {
             repository.deleteAll()
+        }
+    }
+
+    fun deletePhoto(stationPhoto: StationPhoto) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deletePhoto(stationPhoto)
         }
     }
 

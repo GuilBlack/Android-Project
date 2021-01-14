@@ -14,4 +14,5 @@
     <string name="no_alphenumeric">You must have some alphanumeric characters</string>
     <string name="no_special_chars_allowed">No special characters allowed except for -</string>
     <string name="title_max_length">Your title must be less than 30 characters</string>
+    <string name="preview_of_the_station_photo">preview of the station photo</string>
 </resources>

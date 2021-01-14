@@ -6,7 +6,7 @@ import androidx.room.*
 
 @Dao
 interface StationPhotoDao {
-    @Query("SELECT * FROM station_photos WHERE station_id = :stationId ORDER BY created_at ASC")
+    @Query("SELECT * FROM station_photos WHERE station_id = :stationId ORDER BY created_at DESC")
     fun getPhotosForStation(stationId: String): LiveData<List<StationPhoto>>
 
     @Query("SELECT * FROM station_photos")
@@ -16,7 +16,7 @@ interface StationPhotoDao {
     suspend fun insertStationPhoto(stationPhoto: StationPhoto)
 
     @Delete
-    suspend fun deleteStationPhotos(vararg stationPhotos: StationPhoto)
+    suspend fun deleteStationPhotos(stationPhoto: StationPhoto)
 
     @Query("DELETE FROM station_photos")
     suspend fun deleteAll()

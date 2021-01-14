@@ -14,8 +14,8 @@ class StationPhotoRepository(private val stationPhotoDao: StationPhotoDao, stati
         stationPhotoDao.insertStationPhoto(stationPhoto)
     }
 
-    suspend fun deletePhoto(vararg stationPhoto: StationPhoto) {
-        stationPhotoDao.deleteStationPhotos(*stationPhoto)
+    suspend fun deletePhoto(stationPhoto: StationPhoto) {
+        stationPhotoDao.deleteStationPhotos(stationPhoto)
     }
 
     suspend fun deleteAll() {

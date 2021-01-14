@@ -25,12 +25,6 @@ class PhotoListActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_photo_list)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        setupActionBarWithNavController(findNavController(R.id.fragmentPhotoList))
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.fragmentPhotoList)
-        return navController.navigateUp()
     }
 
     private fun replaceFragment(frag: Fragment) {
