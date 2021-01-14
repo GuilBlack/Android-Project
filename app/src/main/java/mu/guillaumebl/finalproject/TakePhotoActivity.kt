@@ -66,7 +66,7 @@ class TakePhotoActivity : AppCompatActivity() {
             errorText.setText(R.string.no_title)
         } else if (!title.contains("[a-zA-Z0-9]".toRegex())) {
             errorText.setText(R.string.no_alphenumeric)
-        } else if (title.contains("[!|@#$%^&*()_+{}\\[\\]:;\"<>,./?]".toRegex())) {
+        } else if (title.contains("[|@#$%^&*()_+{}\\[\\]\"<>/]".toRegex())) {
             errorText.setText(R.string.no_special_chars_allowed)
         } else if (title.contains("\\")) {
             errorText.setText(R.string.no_special_chars_allowed)
