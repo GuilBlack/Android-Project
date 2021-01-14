@@ -11,6 +11,9 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -26,7 +29,8 @@ import mu.guillaumebl.finalproject.data.StationPhoto
 import java.io.File
 
 
-class PhotoListFragment : Fragment() {
+class PhotoListFragment : Fragment(),
+    PhotoListRecyclerAdapter.StationPhotoItemListener {
 
     private var station: Station? = null
     private lateinit var stationPhotoViewModel: PhotoViewModel
@@ -77,7 +81,7 @@ class PhotoListFragment : Fragment() {
         station = this.arguments?.getParcelable("StationData")
         station?.let { station ->
             Log.i(LOG_TAG, station.city)
-            val adapter = PhotoListRecyclerAdapter()
+            val adapter = PhotoListRecyclerAdapter(this)
             recyclerView = view.photoListRecyclerView
             recyclerView.adapter = adapter
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -117,6 +121,10 @@ class PhotoListFragment : Fragment() {
 
         stationPhotoViewModel.deletePhoto(stationPhoto)
         recyclerView.adapter!!.notifyItemRemoved(viewHolder.adapterPosition)
+    }
+
+    override fun onStationPhotoClick(stationPhoto: StationPhoto) {
+        Log.i(LOG_TAG, stationPhoto.toString())
     }
 
 }

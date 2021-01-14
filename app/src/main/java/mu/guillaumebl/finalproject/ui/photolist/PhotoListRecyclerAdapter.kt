@@ -17,7 +17,7 @@ import mu.guillaumebl.finalproject.R
 import mu.guillaumebl.finalproject.data.StationPhoto
 import java.text.SimpleDateFormat
 
-class PhotoListRecyclerAdapter(): RecyclerView.Adapter<PhotoListRecyclerAdapter.PhotoViewHolder>() {
+class PhotoListRecyclerAdapter(val itemListener: StationPhotoItemListener): RecyclerView.Adapter<PhotoListRecyclerAdapter.PhotoViewHolder>() {
 
     private var stationPhotos = emptyList<StationPhoto>()
 
@@ -42,6 +42,9 @@ class PhotoListRecyclerAdapter(): RecyclerView.Adapter<PhotoListRecyclerAdapter.
             titleText.text = stationPhoto.photoTitle
             titleText.contentDescription = stationPhoto.photoTitle
             dateText.text = SimpleDateFormat("dd-MMMM-yyyy").format(stationPhoto.createdAt)
+            holder.itemView.setOnClickListener {
+                itemListener.onStationPhotoClick(stationPhoto)
+            }
         }
     }
 
@@ -52,6 +55,10 @@ class PhotoListRecyclerAdapter(): RecyclerView.Adapter<PhotoListRecyclerAdapter.
     fun setData(stationPhotos: List<StationPhoto>) {
         this.stationPhotos = stationPhotos
         notifyDataSetChanged()
+    }
+
+    interface StationPhotoItemListener {
+        fun onStationPhotoClick(stationPhoto: StationPhoto)
     }
 
 }
