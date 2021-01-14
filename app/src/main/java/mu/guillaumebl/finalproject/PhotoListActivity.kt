@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupActionBarWithNavController
 import kotlinx.android.synthetic.main.activity_main.*
 import mu.guillaumebl.finalproject.data.Station
 import mu.guillaumebl.finalproject.ui.photolist.PhotoListFragment
@@ -23,6 +25,12 @@ class PhotoListActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_photo_list)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        setupActionBarWithNavController(findNavController(R.id.fragmentPhotoList))
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.fragmentPhotoList)
+        return navController.navigateUp()
     }
 
     private fun replaceFragment(frag: Fragment) {

@@ -9,5 +9,18 @@
         android:id="@+id/photoListFragment"
         android:name="mu.guillaumebl.finalproject.ui.photolist.PhotoListFragment"
         android:label="photo_list_fragment"
-        tools:layout="@layout/photo_list_fragment" />
+        tools:layout="@layout/photo_list_fragment" >
+        <action
+            android:id="@+id/action_photoListFragment_to_photoDetailsFragment2"
+            app:destination="@id/photoDetailsFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/photoDetailsFragment2"
+        android:name="mu.guillaumebl.finalproject.ui.photolist.PhotoDetailsFragment"
+        android:label="photo_details_fragment"
+        tools:layout="@layout/photo_details_fragment" >
+        <action
+            android:id="@+id/action_photoDetailsFragment2_to_photoListFragment"
+            app:destination="@id/photoListFragment" />
+    </fragment>
 </navigation>

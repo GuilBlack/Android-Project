@@ -15,7 +15,7 @@ import mu.guillaumebl.finalproject.data.Station
 
 class PhotoListFragment : Fragment() {
 
-    val REQUEST_IMAGE_CAPTURE = 1
+    private var station: Station? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -23,12 +23,11 @@ class PhotoListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val station = this.arguments?.getParcelable<Station>("StationData")
-        if (station != null) {
-            Log.i(LOG_TAG, station.city)
-        }
+        station = this.arguments?.getParcelable("StationData")
+        station?.let { Log.i(LOG_TAG, it.city) }
 
-        return inflater.inflate(R.layout.photo_list_fragment, container, false)
+        val view = inflater.inflate(R.layout.photo_list_fragment, container, false)
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -36,6 +35,7 @@ class PhotoListFragment : Fragment() {
         cameraFloatingActionButton.setOnClickListener {
             val intent = Intent(requireContext(), TakePhotoActivity::class.java)
             intent.putExtra("dispatchTakePictureIntent", "dispatchTakePictureIntent")
+            intent.putExtra("stationData", station)
             startActivity(intent)
         }
     }

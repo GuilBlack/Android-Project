@@ -14,6 +14,6 @@
         android:layout_height="match_parent"
         app:navGraph="@navigation/photo_list_nav_graph"
         app:defaultNavHost="true"
-        android:id="@+id/fragment"/>
+        android:id="@+id/fragmentPhotoList"/>
 
 </FrameLayout>

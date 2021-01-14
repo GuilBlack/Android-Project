@@ -7,8 +7,16 @@ import android.provider.MediaStore
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
+import androidx.lifecycle.ViewModelProvider
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_take_photo.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import mu.guillaumebl.finalproject.data.Station
+import mu.guillaumebl.finalproject.data.StationPhoto
+import mu.guillaumebl.finalproject.ui.photolist.PhotoViewModel
+import mu.guillaumebl.finalproject.ui.photolist.PhotoViewModelFactory
 import java.io.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -18,6 +26,9 @@ class TakePhotoActivity : AppCompatActivity() {
     private val REQUEST_IMAGE_CAPTURE = 1
     lateinit var currentPhotoPath: String
     private var isSaved = false
+    private lateinit var station: Station
+    private lateinit var stationPhotoViewModel: PhotoViewModel
+    private lateinit var stationPhotoViewModelFactory: PhotoViewModelFactory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,28 +37,45 @@ class TakePhotoActivity : AppCompatActivity() {
         if (intent.getStringExtra("dispatchTakePictureIntent") == "dispatchTakePictureIntent") {
             dispatchTakePictureIntent()
         }
-
+        station = intent.getParcelableExtra("stationData")!!
+        stationPhotoViewModelFactory = PhotoViewModelFactory(application, station.id)
+        stationPhotoViewModel = ViewModelProvider(this, stationPhotoViewModelFactory)
+            .get(PhotoViewModel::class.java)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         saveBtn.setOnClickListener {
-            errorText.text = ""
-            val title = pictureName.text.toString()
-            if (title == "") {
-                errorText.setText(R.string.no_title)
-            } else if (!title.contains("[a-zA-Z0-9]".toRegex())) {
-                errorText.setText(R.string.no_alphenumeric)
-            } else if (title.contains("[!|@#$%^&*()_+{}\\[\\]:;\"<>,./?]".toRegex())) {
-                errorText.setText(R.string.no_special_chars_allowed)
-            } else if (title.contains("\\")) {
-                errorText.setText(R.string.no_special_chars_allowed)
-            } else if (title.length > 20) {
-                errorText.setText(R.string.title_max_length)
-            } else {
-                Log.i(LOG_TAG, title)
-                isSaved = true
-                finish()
-            }
+            saveDataToDatabase()
         }
+    }
+
+    private fun saveDataToDatabase() {
+        val title = pictureName.text.toString()
+        if (checkInput(title)) {
+            //create a station photo and add it to database
+            Log.i(LOG_TAG, title)
+            val stationPhoto = StationPhoto(0, title, currentPhotoPath, station.id, Date(System.currentTimeMillis()))
+            stationPhotoViewModel.addPhoto(stationPhoto)
+            isSaved = true
+            finish()
+        }
+    }
+
+    private fun checkInput(title: String): Boolean {
+        errorText.text = ""
+        if (title == "") {
+            errorText.setText(R.string.no_title)
+        } else if (!title.contains("[a-zA-Z0-9]".toRegex())) {
+            errorText.setText(R.string.no_alphenumeric)
+        } else if (title.contains("[!|@#$%^&*()_+{}\\[\\]:;\"<>,./?]".toRegex())) {
+            errorText.setText(R.string.no_special_chars_allowed)
+        } else if (title.contains("\\")) {
+            errorText.setText(R.string.no_special_chars_allowed)
+        } else if (title.length > 30) {
+            errorText.setText(R.string.title_max_length)
+        } else {
+            return true
+        }
+        return false
     }
 
     private fun dispatchTakePictureIntent() {
