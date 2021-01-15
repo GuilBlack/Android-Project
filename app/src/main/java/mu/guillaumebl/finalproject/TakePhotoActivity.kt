@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModelProvider
@@ -37,12 +39,12 @@ class TakePhotoActivity : AppCompatActivity() {
         if (intent.getStringExtra("dispatchTakePictureIntent") == "dispatchTakePictureIntent") {
             dispatchTakePictureIntent()
         }
-        station = intent.getParcelableExtra("stationData")!!
+        station = intent.getParcelableExtra("StationData")!!
         stationPhotoViewModelFactory = PhotoViewModelFactory(application, station.id)
         stationPhotoViewModel = ViewModelProvider(this, stationPhotoViewModelFactory)
             .get(PhotoViewModel::class.java)
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        initToolbar()
         saveBtn.setOnClickListener {
             saveDataToDatabase()
         }
@@ -136,4 +138,23 @@ class TakePhotoActivity : AppCompatActivity() {
         }
     }
 
+    private fun initToolbar() {
+        setSupportActionBar(toolbar)
+        supportActionBar?.title = getString(R.string.full_image)
+
+        toolbar.setNavigationOnClickListener {
+            val intent = Intent(this, PhotoListActivity::class.java)
+            intent.putExtra("StationData", station)
+            startActivity(intent)
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_share, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return super.onOptionsItemSelected(item)
+    }
 }

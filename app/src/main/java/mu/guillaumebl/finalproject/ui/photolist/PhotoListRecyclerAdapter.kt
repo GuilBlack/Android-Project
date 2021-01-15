@@ -36,7 +36,6 @@ class PhotoListRecyclerAdapter(val itemListener: StationPhotoItemListener): Recy
     override fun onBindViewHolder(holder: PhotoViewHolder, position: Int) {
         val stationPhoto = stationPhotos[position]
         with(holder) {
-            Log.i(LOG_TAG, stationPhoto.photoPath)
             Picasso.get().load("file://${stationPhoto.photoPath}").resize(80, 80).centerCrop().into(itemView.stationPreview)
             itemView.stationPreview.tag = stationPhoto
             titleText.text = stationPhoto.photoTitle

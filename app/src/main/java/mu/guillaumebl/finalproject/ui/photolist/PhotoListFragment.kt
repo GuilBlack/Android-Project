@@ -8,12 +8,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -21,6 +17,7 @@ import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 import kotlinx.android.synthetic.main.photo_grid_item.view.*
 import kotlinx.android.synthetic.main.photo_list_fragment.*
 import kotlinx.android.synthetic.main.photo_list_fragment.view.*
+import mu.guillaumebl.finalproject.DetailsActivity
 import mu.guillaumebl.finalproject.LOG_TAG
 import mu.guillaumebl.finalproject.R
 import mu.guillaumebl.finalproject.TakePhotoActivity
@@ -77,8 +74,9 @@ class PhotoListFragment : Fragment(),
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.photo_list_fragment, container, false)
-
+        Log.i(LOG_TAG, "hello")
         station = this.arguments?.getParcelable("StationData")
+
         station?.let { station ->
             Log.i(LOG_TAG, station.city)
             val adapter = PhotoListRecyclerAdapter(this)
@@ -108,7 +106,7 @@ class PhotoListFragment : Fragment(),
         cameraFloatingActionButton.setOnClickListener {
             val intent = Intent(requireContext(), TakePhotoActivity::class.java)
             intent.putExtra("dispatchTakePictureIntent", "dispatchTakePictureIntent")
-            intent.putExtra("stationData", station)
+            intent.putExtra("StationData", station)
             startActivity(intent)
         }
     }
@@ -125,6 +123,10 @@ class PhotoListFragment : Fragment(),
 
     override fun onStationPhotoClick(stationPhoto: StationPhoto) {
         Log.i(LOG_TAG, stationPhoto.toString())
+        val intent = Intent(requireContext(), DetailsActivity::class.java)
+        intent.putExtra("StationPhoto", stationPhoto)
+        intent.putExtra("StationData", station)
+        startActivity(intent)
     }
 
 }

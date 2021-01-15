@@ -9,6 +9,17 @@
     android:gravity="center"
     tools:context=".TakePhotoActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
+        tools:layout_editor_absoluteX="3dp" />
+
     <ImageView
         android:id="@+id/imageThumbnail"
         android:layout_width="0dp"
@@ -16,12 +27,12 @@
         android:layout_marginHorizontal="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="200dp"
+        android:contentDescription="@string/picture_preview"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/take_photo_holder"
-        android:contentDescription="@string/picture_preview"/>
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:srcCompat="@drawable/take_photo_holder" />
 
     <TextView
         android:id="@+id/pictureNameLabel"
