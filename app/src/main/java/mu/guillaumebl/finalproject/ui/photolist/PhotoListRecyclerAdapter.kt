@@ -1,18 +1,14 @@
 package mu.guillaumebl.finalproject.ui.photolist
 
 import android.os.Build
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_take_photo.*
 import kotlinx.android.synthetic.main.photo_grid_item.view.*
-import mu.guillaumebl.finalproject.LOG_TAG
 import mu.guillaumebl.finalproject.R
 import mu.guillaumebl.finalproject.data.StationPhoto
 import java.text.SimpleDateFormat

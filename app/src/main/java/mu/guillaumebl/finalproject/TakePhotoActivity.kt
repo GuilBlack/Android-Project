@@ -12,14 +12,12 @@ import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModelProvider
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_take_photo.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import mu.guillaumebl.finalproject.data.Station
 import mu.guillaumebl.finalproject.data.StationPhoto
 import mu.guillaumebl.finalproject.ui.photolist.PhotoViewModel
 import mu.guillaumebl.finalproject.ui.photolist.PhotoViewModelFactory
-import java.io.*
+import java.io.File
+import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -140,7 +138,7 @@ class TakePhotoActivity : AppCompatActivity() {
 
     private fun initToolbar() {
         setSupportActionBar(toolbar)
-        supportActionBar?.title = getString(R.string.full_image)
+        supportActionBar?.title = getString(R.string.preview_picture)
 
         toolbar.setNavigationOnClickListener {
             val intent = Intent(this, PhotoListActivity::class.java)
